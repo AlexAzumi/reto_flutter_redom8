@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reto_flutter_redom8/home.dart';
+import 'package:reto_flutter_redom8/widgets/login_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,22 +48,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Iniciar sesión - Reto Redom8')),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(hintText: 'Correo electrónico'),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(hintText: 'Contraseña'),
-            ),
-            ElevatedButton(
-                onPressed: () => _onTapEnter(context),
-                child: const Text('Entrar'))
-          ],
-        ),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+        child: LoginForm(),
       ),
     );
   }
