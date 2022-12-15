@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reto_flutter_redom8/home.dart';
 import 'package:reto_flutter_redom8/widgets/login_form.dart';
 
 void main() {
@@ -39,11 +38,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void _onTapEnter(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Home()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
