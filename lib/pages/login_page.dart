@@ -29,9 +29,15 @@ class _LoginForm extends State<LoginPage> {
           email: _controllerEmail.text.trim(),
           password: _controllerPassword.text.trim());
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
+      if (e.code == 'user-not-found') {
+        setState(() {
+          errorMessage = 'El usuario no existe';
+        });
+      } else if (e.code == 'wrong-password') {
+        setState(() {
+          errorMessage = 'Las credenciales introducidas no son válidas';
+        });
+      }
     }
   }
 
