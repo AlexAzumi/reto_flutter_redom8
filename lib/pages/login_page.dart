@@ -12,22 +12,35 @@ class LoginPage extends StatefulWidget {
 
 class _LoginForm extends State<LoginPage> {
   String? errorMessage = '';
-  bool isLogin = false;
+  bool loading = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
   Future<void> signInWithEmailAndPassword() async {
+    String email = _controllerEmail.text.trim();
+    String password = _controllerPassword.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      setState(() {
+        errorMessage = 'Por favor, llene todos los campos';
+      });
+
+      return;
+    }
+
     if (errorMessage != null) {
       setState(() {
         errorMessage = '';
       });
     }
 
+    setState(() {
+      loading = true;
+    });
+
     try {
-      await Auth().signInWithEmailAndPassword(
-          email: _controllerEmail.text.trim(),
-          password: _controllerPassword.text.trim());
+      await Auth().signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         setState(() {
@@ -39,6 +52,10 @@ class _LoginForm extends State<LoginPage> {
         });
       }
     }
+
+    setState(() {
+      loading = false;
+    });
   }
 
   @override
@@ -57,21 +74,26 @@ class _LoginForm extends State<LoginPage> {
                 decoration:
                     const InputDecoration(hintText: 'Correo electrónico'),
                 controller: _controllerEmail,
+                textInputAction: TextInputAction.next,
               ),
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Contraseña'),
                 controller: _controllerPassword,
                 obscureText: true,
+                textInputAction: TextInputAction.done,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: ElevatedButton(
-                    onPressed: signInWithEmailAndPassword,
+                    onPressed: loading ? null : signInWithEmailAndPassword,
                     child: const Text('Entrar')),
               ),
               Padding(
                   padding: const EdgeInsets.only(top: 15),
-                  child: Text(errorMessage ?? ''))
+                  child: Text(
+                    errorMessage ?? '',
+                    style: TextStyle(color: Colors.red[800]),
+                  ))
             ],
           )),
     );
