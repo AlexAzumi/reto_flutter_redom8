@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../services/auth.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginForm();
+  State<LoginPage> createState() => _LoginForm();
 }
 
-class _LoginForm extends State<LoginForm> {
+class _LoginForm extends State<LoginPage> {
   String? errorMessage = '';
   bool isLogin = false;
 
@@ -18,6 +18,12 @@ class _LoginForm extends State<LoginForm> {
   final TextEditingController _controllerPassword = TextEditingController();
 
   Future<void> signInWithEmailAndPassword() async {
+    if (errorMessage != null) {
+      setState(() {
+        errorMessage = '';
+      });
+    }
+
     try {
       await Auth().signInWithEmailAndPassword(
           email: _controllerEmail.text.trim(),
@@ -31,33 +37,37 @@ class _LoginForm extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: double.infinity,
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(hintText: 'Correo electrónico'),
-              controller: _controllerEmail,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(hintText: 'Contraseña'),
-              controller: _controllerPassword,
-              obscureText: true,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0),
-              child: ElevatedButton(
-                  onPressed: signInWithEmailAndPassword,
-                  child: const Text('Entrar')),
-            ),
-            Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: Text(errorMessage ?? ''))
-          ],
-        ));
+    return Scaffold(
+      appBar: AppBar(title: const Text('Iniciar sesión')),
+      body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextFormField(
+                decoration:
+                    const InputDecoration(hintText: 'Correo electrónico'),
+                controller: _controllerEmail,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(hintText: 'Contraseña'),
+                controller: _controllerPassword,
+                obscureText: true,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                child: ElevatedButton(
+                    onPressed: signInWithEmailAndPassword,
+                    child: const Text('Entrar')),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Text(errorMessage ?? ''))
+            ],
+          )),
+    );
   }
 }
