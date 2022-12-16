@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "730929523809",
+    "project_id": "reto-flutter-redom8",
+    "storage_bucket": "reto-flutter-redom8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730929523809:android:8e91abcc43155219270e20",
+        "android_client_info": {
+          "package_name": "com.example.reto_flutter_redom8"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730929523809-3ovhd3vt01c32uma2t63no1tgvrkiea2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz-R9DAFp37oP7y4HKT1QzZgFicgYiCTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730929523809-3ovhd3vt01c32uma2t63no1tgvrkiea2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

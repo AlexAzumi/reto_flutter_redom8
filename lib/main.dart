@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:reto_flutter_redom8/widgets/login_form.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:reto_flutter_redom8/pages/login_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -14,15 +18,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Reto Flutter Redom8 - Alejandro Suárez',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blueGrey,
       ),
       home: const LoginPage(),
@@ -42,10 +37,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Iniciar sesión - Reto Redom8')),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-        child: LoginForm(),
-      ),
+      body: const LoginForm(),
     );
   }
 }
