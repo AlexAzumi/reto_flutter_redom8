@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reto_flutter_redom8/services/products.dart';
 
 import '../services/auth.dart';
 
@@ -11,6 +12,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Products().getHomeProducts();
+  }
 
   void onItemTapped(int index) {
     setState(() {
