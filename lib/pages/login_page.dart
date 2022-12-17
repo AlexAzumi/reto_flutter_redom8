@@ -67,7 +67,7 @@ class _LoginForm extends State<LoginPage> {
           width: double.infinity,
           padding: const EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
@@ -82,12 +82,9 @@ class _LoginForm extends State<LoginPage> {
                 obscureText: true,
                 textInputAction: TextInputAction.done,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15.0),
-                child: ElevatedButton(
-                    onPressed: loading ? null : signInWithEmailAndPassword,
-                    child: const Text('Entrar')),
-              ),
+              ElevatedButton(
+                  onPressed: loading ? null : signInWithEmailAndPassword,
+                  child: const Text('Entrar')),
               Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Text(
