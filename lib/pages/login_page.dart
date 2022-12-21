@@ -89,7 +89,8 @@ class _LoginForm extends State<LoginPage> {
                   padding: const EdgeInsets.only(top: 15),
                   child: Text(
                     errorMessage ?? '',
-                    style: TextStyle(color: Colors.red[800]),
+                    style: TextStyle(color: Colors.red[800], fontSize: 15),
+                    textAlign: TextAlign.center,
                   ))
             ],
           )),
