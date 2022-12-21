@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class Products {
   Future<List<Item>> getHomeProducts() async {
-    List<Item> allProducts = List.empty();
+    List<Item> allProducts = List.empty(growable: true);
     final response =
         await http.get(Uri.parse('https://fakestoreapi.com/products?limit=20'));
 
@@ -26,7 +26,7 @@ class Products {
 class Item {
   final int id;
   final String title;
-  final Float price;
+  final num price;
   final String description;
   final String category;
   final String image;
