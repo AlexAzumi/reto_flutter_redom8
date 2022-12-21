@@ -11,14 +11,25 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
   bool loading = true;
   List<Item> itemsToShow = List.empty(growable: true);
+  // Animation stuff
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
+
+    controller =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    animation = Tween<double>(begin: 0, end: 1).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
 
     loadItems();
   }
@@ -46,6 +57,8 @@ class _HomePageState extends State<HomePage> {
     if (loading) {
       return _loadingScreen();
     } else {
+      controller.forward();
+
       return _productListing();
     }
   }
@@ -69,7 +82,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _productListing() {
-    return const Text('Products xd');
+    return Opacity(opacity: animation.value, child: const Text('Products xd'));
   }
 
   @override
