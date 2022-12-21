@@ -3,6 +3,7 @@ import 'package:reto_flutter_redom8/services/products.dart';
 import 'dart:developer' as developer;
 
 import '../services/auth.dart';
+import '../widgets/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,7 +84,23 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _productListing() {
-    return Opacity(opacity: animation.value, child: const Text('Products xd'));
+    return Opacity(
+        opacity: animation.value,
+        child: Row(
+          children: const [
+            Expanded(
+                child: ProductCard(
+              name: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+              price: 109.95,
+            )),
+            Expanded(
+              child: ProductCard(
+                name: 'Mens Casual Premium Slim Fit T-Shirts',
+                price: 109.95,
+              ),
+            )
+          ],
+        ));
   }
 
   @override
