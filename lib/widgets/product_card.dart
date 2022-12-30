@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.name, required this.price});
+  const ProductCard(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.image});
 
   final String name;
   final num price;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,14 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
+                Image.network(
+                  image,
+                  fit: BoxFit.contain,
+                  loadingBuilder: (context, child, loadingProgress) =>
+                      loadingProgress == null
+                          ? child
+                          : const CircularProgressIndicator(),
+                ),
                 Text(
                   name,
                   overflow: TextOverflow.ellipsis,

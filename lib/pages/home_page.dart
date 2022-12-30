@@ -89,7 +89,8 @@ class _HomePageState extends State<HomePage>
         child: GridView.count(
           crossAxisCount: 2,
           children: itemsToShow
-              .map((item) => ProductCard(name: item.title, price: item.price))
+              .map((item) => ProductCard(
+                  name: item.title, price: item.price, image: item.image))
               .toList(),
         ));
   }
