@@ -86,20 +86,11 @@ class _HomePageState extends State<HomePage>
   Widget _productListing() {
     return Opacity(
         opacity: animation.value,
-        child: Row(
-          children: const [
-            Expanded(
-                child: ProductCard(
-              name: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-              price: 109.95,
-            )),
-            Expanded(
-              child: ProductCard(
-                name: 'Mens Casual Premium Slim Fit T-Shirts',
-                price: 109.95,
-              ),
-            )
-          ],
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: itemsToShow
+              .map((item) => ProductCard(name: item.title, price: item.price))
+              .toList(),
         ));
   }
 
