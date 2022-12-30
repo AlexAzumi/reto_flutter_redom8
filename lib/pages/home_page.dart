@@ -87,6 +87,7 @@ class _HomePageState extends State<HomePage>
     return Opacity(
         opacity: animation.value,
         child: GridView.count(
+          physics: const BouncingScrollPhysics(),
           crossAxisCount: 2,
           children: itemsToShow
               .map((item) => ProductCard(
