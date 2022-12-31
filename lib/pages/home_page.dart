@@ -91,7 +91,10 @@ class _HomePageState extends State<HomePage>
           crossAxisCount: 2,
           children: itemsToShow
               .map((item) => ProductCard(
-                  name: item.title, price: item.price, image: item.image))
+                  id: item.id,
+                  name: item.title,
+                  price: item.price,
+                  image: item.image))
               .toList(),
         ));
   }
