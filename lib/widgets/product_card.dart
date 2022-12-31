@@ -14,14 +14,17 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image.network(
               image,
-              fit: BoxFit.fill,
+              height: 100,
+              fit: BoxFit.contain,
               loadingBuilder: (context, child, loadingProgress) =>
                   loadingProgress == null
                       ? child
