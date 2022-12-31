@@ -28,7 +28,11 @@ class ProductCard extends StatelessWidget {
               loadingBuilder: (context, child, loadingProgress) =>
                   loadingProgress == null
                       ? child
-                      : const CircularProgressIndicator(),
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: const [CircularProgressIndicator()]),
             ),
             Expanded(
               child: Column(
