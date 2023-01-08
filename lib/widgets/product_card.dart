@@ -6,21 +6,21 @@ class ProductCard extends StatelessWidget {
       required this.id,
       required this.name,
       required this.price,
-      required this.image});
+      required this.image,
+      required this.onTapItem});
 
   final int id;
   final String name;
   final num price;
   final String image;
-
-  /// Navigates to the item information depending on the `id` provided
-  void onTapItem() {}
+  final Function() onTapItem;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTapItem,
       child: Card(
+        elevation: 2.0,
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(8.0),

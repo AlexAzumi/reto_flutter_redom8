@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reto_flutter_redom8/pages/product_page.dart';
 import 'package:reto_flutter_redom8/services/products.dart';
 import 'dart:developer' as developer;
 
@@ -55,13 +56,13 @@ class _HomePageState extends State<HomePage>
     Auth().signOut();
   }
 
-  Widget _mainContainer() {
+  Widget _mainContainer(BuildContext context) {
     if (loading) {
       return _loadingScreen();
     } else {
       controller.forward();
 
-      return _productListing();
+      return _productListing(context);
     }
   }
 
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage>
         ));
   }
 
-  Widget _productListing() {
+  Widget _productListing(BuildContext context) {
     return Opacity(
         opacity: animation.value,
         child: GridView.count(
@@ -91,12 +92,23 @@ class _HomePageState extends State<HomePage>
           crossAxisCount: 2,
           children: itemsToShow
               .map((item) => ProductCard(
-                  id: item.id,
-                  name: item.title,
-                  price: item.price,
-                  image: item.image))
+                    id: item.id,
+                    name: item.title,
+                    price: item.price,
+                    image: item.image,
+                    onTapItem: () => onTapItem(context, item),
+                  ))
               .toList(),
         ));
+  }
+
+  void onTapItem(BuildContext context, Item item) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ProductPage(
+                  itemData: item,
+                )));
   }
 
   @override
@@ -108,7 +120,7 @@ class _HomePageState extends State<HomePage>
           IconButton(onPressed: onLogoutTapped, icon: const Icon(Icons.logout))
         ],
       ),
-      body: _mainContainer(),
+      body: _mainContainer(context),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
