@@ -9,6 +9,17 @@ class ProductPage extends StatelessWidget {
 
   final Item itemData;
 
+  Widget _spacer(String size) {
+    switch (size) {
+      case 'small':
+        return const SizedBox(height: 4.0);
+      case 'medium':
+        return const SizedBox(height: 16.0);
+      default:
+        return const SizedBox(height: 4.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +67,32 @@ class ProductPage extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              _spacer('medium'),
+              const Text(
+                'Descripción',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              _spacer('small'),
+              Text(
+                itemData.description,
+                textAlign: TextAlign.justify,
+              ),
+              _spacer('medium'),
+              const Text(
+                'Categoría',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              _spacer('small'),
+              Text(itemData.category),
+              _spacer('medium'),
+              Text(
+                '\$${itemData.price.toString()}',
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
                 ),
               )
             ],
