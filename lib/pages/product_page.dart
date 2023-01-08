@@ -24,9 +24,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Detalles del producto')),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
