@@ -88,7 +88,7 @@ class ProductPage extends StatelessWidget {
               Text(itemData.category),
               _spacer('medium'),
               Text(
-                '\$${itemData.price.toString()}',
+                '\$${itemData.price.toString()} USD',
                 textAlign: TextAlign.right,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
